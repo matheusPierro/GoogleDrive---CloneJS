@@ -5,7 +5,7 @@ For a detailed explanation regarding each configuration property, visit:
 export default {
     clearMocks: true,
     restoreMocks: true,
-    collectCoverage: true,
+    // collectCoverage: true,
     coverageDirectory: "coverage",
     coverageProvider: "v8",
     coverageReporters: [
