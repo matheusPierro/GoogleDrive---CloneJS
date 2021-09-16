@@ -11,7 +11,7 @@ import Routes from './../../src/routes.js'
 describe('#FileHelper', () => {
 
     describe('#getFileStatus', () => {
-        test.todo('it should return files statuses in correct format', () => {
+        test('it should return files statuses in correct format', async() => {
             const statMock = {
                 dev: 2352777603,
                 mode: 33206,
@@ -34,18 +34,26 @@ describe('#FileHelper', () => {
             }
 
             const mockUser = 'matheusPierro'
-                // process.env.USER = mockUser
+            process.env.USER = mockUser
             const fileName = 'spider.jpg'
+
+            jest.spyOn(fs.promises, fs.promises.readdir.name)
+                .mockResolvedValue([fileName])
+
             jest.spyOn(fs.promises, fs.promises.stat.name)
                 .mockResolvedValue(statMock)
 
-            const result = await FileHelper
+            const result = await FileHelper.getFilesStatus("/tmp")
+
             const expectedResult = [{
-                size: "5 kb",
-                birthtime: statMock.birthtime,
+                size: '52.2 kB',
+                lastModified: statMock.birthtime,
                 owner: mockUser,
                 file: fileName
             }]
+
+            expect(fs.promises.stat).toHaveBeenCalledWith(`/tmp/${fileName}`)
+            expect(result).toMatchObject(expectedResult)
         })
     })
 })

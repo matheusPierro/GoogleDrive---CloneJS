@@ -7,6 +7,21 @@ import {
 import Routes from './../../src/routes.js'
 
 describe('#Route test suite', () => {
+    const defaultParams = {
+        request: {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            method: '',
+            body: {}
+        },
+        response: {
+            setHeader: jest.fn(),
+            writeHead: jest.fn(),
+            end: jest.fn()
+        },
+        values: () => Object.values(defaultParams)
+    }
 
     describe('#setSocketInstance', () => {
         test('setSocket should store io instance', () => {
@@ -22,21 +37,6 @@ describe('#Route test suite', () => {
     })
 
     describe('#handler', () => {
-        const defaultParams = {
-            request: {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                method: '',
-                body: {}
-            },
-            response: {
-                setHeader: jest.fn(),
-                writeHead: jest.fn(),
-                end: jest.fn()
-            },
-            values: () => Object.values(defaultParams)
-        }
 
         test('given an inexistent route is should choose default route', () => {
             const routes = new Routes()
@@ -101,7 +101,28 @@ describe('#Route test suite', () => {
     })
 
     describe('#get', () => {
-        test.skip('given method GET it should list all files downloaded', () => {
+        test('given method GET it should list all files downloaded', async() => {
+            const routes = new Routes()
+            const params = {
+                ...defaultParams
+            }
+
+
+            const filesStatusesMock = [{
+                size: '52.2 kB',
+                lastModified: '2021-09-15T22:41:43.311Z',
+                owner: 'matheusPierro',
+                file: 'spider.txt'
+            }]
+            jest.spyOn(routes.fileHelper, routes.fileHelper.getFilesStatus.name)
+                .mockResolvedValue(filesStatusesMock)
+
+            params.request.method = 'GET'
+            await routes.handler(...params.values())
+
+
+            expect(params.response.writeHead).toHaveBeenCalledWith(200)
+            expect(params.response.end).toHaveBeenCalledWith(JSON.stringify(filesStatusesMock))
 
         })
     })
