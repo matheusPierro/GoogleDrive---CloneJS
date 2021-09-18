@@ -59,8 +59,8 @@ describe('#UploadHandler test suite', () => {
             jest.spyOn(fs, fs.createWriteStream.name)
                 .mockImplementation(() => TestUtil.generateWritableStream)
 
-            jest.spyOn(fs, fs.createWriteStream.name)
-                .mockImplementation(() => TestUtil.generateWritableStream)
+            jest.spyOn(handler, handler.handleFileBytes.name)
+
 
         })
     })
