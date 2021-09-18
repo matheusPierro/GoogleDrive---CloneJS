@@ -1,4 +1,4 @@
-import { Readable } from 'stream'
+import { Readable, Writable } from 'stream'
 export default class TestUtil {
 
     static generateReadableStream(data) {
@@ -10,6 +10,16 @@ export default class TestUtil {
                 }
 
                 this.push(null)
+            }
+        })
+    }
+    static generateWritableStream(onData) {
+        return new Writable({
+            objectMode: true,
+            write(chunk, encondig, cb) {
+                onData(chunk)
+
+                cb(null, chunk)
             }
         })
     }
