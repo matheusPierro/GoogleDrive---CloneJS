@@ -5,6 +5,7 @@ import {
     jest
 } from '@jest/globals'
 import fs from 'fs'
+import { resolve } from 'path'
 import UploadHandler from '../../src/uploadHandler.js'
 import TestUtil from '../_util/testUtil.js'
 import Routes from './../../src/routes.js'
@@ -57,10 +58,24 @@ describe('#UploadHandler test suite', () => {
             const onData = jest.fn()
 
             jest.spyOn(fs, fs.createWriteStream.name)
-                .mockImplementation(() => TestUtil.generateWritableStream)
+                .mockImplementation(() => TestUtil.generateWritableStream(onData))
 
+            const onTransform = jest.fn()
             jest.spyOn(handler, handler.handleFileBytes.name)
+                .mockImplementation(() => TestUtil.generateTransformStream(onTransform))
 
+            const params = {
+                fieldname: 'video',
+                file: TestUtil.generateReadableStream(chunks),
+                filename: 'mockFile.mov'
+            }
+            await handler.onFile(...Object.values(params))
+
+            expect(onData.mock.calls.join()).toEqual(chunks.join())
+            expect(onTransform.mock.calls.join()).toEqual(chunks.join())
+
+            const expectedFilename = `${handler.downloadsFolder}/${params.filename}`;
+            expect(fs.createWriteStream).toHaveBeenCalledWith(expectedFilename)
 
         })
     })
