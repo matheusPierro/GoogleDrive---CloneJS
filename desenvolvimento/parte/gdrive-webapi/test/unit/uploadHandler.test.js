@@ -5,6 +5,7 @@ import {
     jest
 } from '@jest/globals'
 import UploadHandler from '../../src/uploadHandler.js'
+import TestUtil from '../_util/testUtil.js'
 import Routes from './../../src/routes.js'
 
 describe('#UploadHandler test suite', () => {
@@ -26,12 +27,17 @@ describe('#UploadHandler test suite', () => {
             const headers = {
                 'content-type': 'multipart/form-data; boundary='
             }
-            const fn = jest.fn()
-            uploadHandler.registerEvents(headers, fn)
+            const onFinish = jest.fn()
+            const busboyInstance = uploadHandler.registerEvents(headers, onFinish)
+
+            const flieStream = TestUtil.generateReadableStream(['chunk', 'of', 'data'])
+            busboyInstance.emit('file', 'fieldname', flieStream, 'filename.txt')
+
+            busboyInstance.listeners("finish")[0].call()
 
             expect(uploadHandler.onFile).toHaveBeenCalled()
+            expect(onFinish).toHaveBeenCalled()
 
-            expect(fn).toHaveBeenCalled()
 
         })
 
