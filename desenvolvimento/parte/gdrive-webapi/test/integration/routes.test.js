@@ -8,11 +8,26 @@ import fs from 'fs'
 import FileHelper from '../../src/fileHelper.js'
 import Routes from './../../src/routes.js'
 
-describe('#FileHelper', () => {
+describe('#Routes Integration Test', () => {
 
     describe('#getFileStatus', () => {
-        test('it should return files statuses in correct format', async() => {
-
+        test('should upload file to the folder', async() => {
+            const filename = 'miranha.jpg'
+            const defaultParams = {
+                request: {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                    method: '',
+                    body: {}
+                },
+                response: {
+                    setHeader: jest.fn(),
+                    writeHead: jest.fn(),
+                    end: jest.fn()
+                },
+                values: () => Object.values(defaultParams)
+            }
         })
     })
 })
