@@ -10,10 +10,10 @@ Bem vindo ao meu projeto! Nele eu trago minha *Primeira* experência com prátic
 
 - Web API
     - [X] Deve listar arquivos baixados
-    - [] Deve receber stream de arquivos e salvar em disco 
+    - [X] Deve receber stream de arquivos e salvar em disco 
     - [X] Deve notificar sobre progresso de armazenamento de arquivos em disco 
-    - [] Deve permitir upload de arquivos em formato image, video ou audio
-    - [] Deve atingir 100% de cobertura de código em testes
+    - [X] Deve permitir upload de arquivos em formato image, video ou audio
+    - [X] Deve atingir 100% de cobertura de código em testes
 
 - Web App 
     - [] Deve listar arquivos baixados

@@ -1,6 +1,5 @@
 import Busboy from 'busboy'
 import fs from 'fs'
-import { emit } from 'process'
 import { pipeline } from 'stream/promises'
 import { logger } from './logger'
 export default class UploadHandler {
