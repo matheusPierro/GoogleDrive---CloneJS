@@ -2,6 +2,8 @@ import {
     describe,
     test,
     expect,
+    beforeAll,
+    afterAll,
     jest
 } from '@jest/globals'
 import fs from 'fs'
@@ -10,10 +12,31 @@ import FileHelper from '../../src/fileHelper.js'
 import Routes from './../../src/routes.js'
 import FormData from 'form-data'
 import TestUtil from '../_util/testUtil.js'
+import { logger } from '../../src/logger.js'
+import { tmpdir } from 'os'
+import { join } from 'path'
 
 describe('#Routes Integration Test', () => {
+    let defaultDownloadsFolder = ''
+    beforeAll(async() => {
+        defaultDownloadsFolder = await fs.promises.mkdtemp(join(tmpdir(), 'downloads-'))
+    })
+
+    afterAll(async() => {
+        await fs.promises.rm(defaultDownloadsFolder, { recursive: true })
+    })
+
+    beforeEach(() => {
+        jest.spyOn(logger, 'info')
+            .mockImplementation()
+    })
 
     describe('#getFileStatus', () => {
+        const ioObj = {
+            to: (id) => ioObj,
+            emit: (event, message) => {}
+        }
+
         test('should upload file to the folder', async() => {
             const filename = 'miranha.jpg'
             const fileStream = fs.createReadStream(`./test/integration/mocks/${filename}`)
@@ -35,6 +58,17 @@ describe('#Routes Integration Test', () => {
                 }),
                 values: () => Object.values(defaultParams)
             }
+            const routes = new Routes(defaultDownloadsFolder)
+            routes.setSocketInstance(ioObj)
+            const dirBeforeRan = await fs.promises.readdir(defaultDownloadsFolder)
+            expect(dirBeforeRan).toEqual([])
+            await routes.handler(...defaultParams.values())
+            const dirAfterRan = await fs.promises.readdir(defaultDownloadsFolder)
+            expect(dirAfterRan).toEqual([filename])
+
+            expect(defaultParams.response.writeHead).toHaveBeenCalledWith(200)
+            const expectedResult = JSON.stringify({ result: 'Files uploaded with success!' })
+            expect(defaultParams.response.end).toHaveBeenCalledWith(expectedResult)
         })
     })
 })
