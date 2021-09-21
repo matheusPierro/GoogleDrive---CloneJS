@@ -45,12 +45,14 @@ describe('#Routes Integration Test', () => {
             const form = new FormData()
             form.append('photo', fileStream)
 
+
             const defaultParams = {
                 request: Object.assign(form, {
                     headers: form.getHeaders(),
                     method: 'POST',
                     url: '?socketId=10'
                 }),
+
                 response: Object.assign(response, {
                     setHeader: jest.fn(),
                     writeHead: jest.fn(),
@@ -58,6 +60,7 @@ describe('#Routes Integration Test', () => {
                 }),
                 values: () => Object.values(defaultParams)
             }
+
             const routes = new Routes(defaultDownloadsFolder)
             routes.setSocketInstance(ioObj)
             const dirBeforeRan = await fs.promises.readdir(defaultDownloadsFolder)
@@ -67,8 +70,10 @@ describe('#Routes Integration Test', () => {
             expect(dirAfterRan).toEqual([filename])
 
             expect(defaultParams.response.writeHead).toHaveBeenCalledWith(200)
+                // const expectedFilename = handler.downloadsFolder.concat('/' + params.filename)
             const expectedResult = JSON.stringify({ result: 'Files uploaded with success!' })
             expect(defaultParams.response.end).toHaveBeenCalledWith(expectedResult)
+
         })
     })
 })

@@ -169,8 +169,8 @@ describe('#UploadHandler test suite', () => {
 
             const [firstCallResult, secondCallResult] = ioObj.emit.mock.calls
 
-            expect(firstCallResult).toEqual([handler.ON_UPLOAD_EVENT, { processedAlredy: "hello".length, filename }])
-            expect(secondCallResult).toEqual([handler.ON_UPLOAD_EVENT, { processedAlredy: messages.join("").length, filename }])
+            expect(firstCallResult).toEqual([handler.ON_UPLOAD_EVENT, { processedAlready: "hello".length, filename }])
+            expect(secondCallResult).toEqual([handler.ON_UPLOAD_EVENT, { processedAlready: messages.join("").length, filename }])
 
         })
     })

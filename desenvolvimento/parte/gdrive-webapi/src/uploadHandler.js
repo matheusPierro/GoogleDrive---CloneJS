@@ -20,19 +20,20 @@ export default class UploadHandler {
         this.lastMessageSent = Date.now()
 
         async function* handleData(source) {
-            let processedAlredy = 0
+            let processedAlready = 0
 
             for await (const chunk of source) {
                 yield chunk
 
-                processedAlredy += chunk.length
+                processedAlready += chunk.length
                 if (!this.canExecute(this.lastMessageSent)) {
-                    continue
+                    continue;
                 }
 
                 this.lastMessageSent = Date.now()
-                this.io.to(this.socketId).emit(this.ON_UPLOAD_EVENT, { processedAlredy, filename })
-                logger.info(`File [${filename}] got ${processedAlredy} bytes to ${this.socketId}`)
+
+                this.io.to(this.socketId).emit(this.ON_UPLOAD_EVENT, { processedAlready, filename })
+                logger.info(`File [${filename}] got ${processedAlready} bytes to ${this.socketId}`)
             }
         }
 
