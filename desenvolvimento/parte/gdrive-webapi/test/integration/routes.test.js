@@ -17,7 +17,9 @@ import { tmpdir } from 'os'
 import { join } from 'path'
 
 describe('#Routes Integration Test', () => {
+
     let defaultDownloadsFolder = ''
+
     beforeAll(async() => {
         defaultDownloadsFolder = await fs.promises.mkdtemp(join(tmpdir(), 'downloads-'))
     })
@@ -32,6 +34,7 @@ describe('#Routes Integration Test', () => {
     })
 
     describe('#getFileStatus', () => {
+
         const ioObj = {
             to: (id) => ioObj,
             emit: (event, message) => {}
@@ -44,7 +47,6 @@ describe('#Routes Integration Test', () => {
 
             const form = new FormData()
             form.append('photo', fileStream)
-
 
             const defaultParams = {
                 request: Object.assign(form, {
@@ -63,17 +65,47 @@ describe('#Routes Integration Test', () => {
 
             const routes = new Routes(defaultDownloadsFolder)
             routes.setSocketInstance(ioObj)
+
             const dirBeforeRan = await fs.promises.readdir(defaultDownloadsFolder)
             expect(dirBeforeRan).toEqual([])
+
             await routes.handler(...defaultParams.values())
+
             const dirAfterRan = await fs.promises.readdir(defaultDownloadsFolder)
             expect(dirAfterRan).toEqual([filename])
 
             expect(defaultParams.response.writeHead).toHaveBeenCalledWith(200)
-                // const expectedFilename = handler.downloadsFolder.concat('/' + params.filename)
             const expectedResult = JSON.stringify({ result: 'Files uploaded with success!' })
             expect(defaultParams.response.end).toHaveBeenCalledWith(expectedResult)
-
         })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     })
 })

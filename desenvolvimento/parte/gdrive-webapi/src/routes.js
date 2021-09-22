@@ -10,10 +10,11 @@ const __dirname = dirname(fileURLToPath(
 const defaultDownloadsFolder = resolve(__dirname, '../', "downloads")
 
 export default class Routes {
-    io
+
     constructor(downloadsFolder = defaultDownloadsFolder) {
         this.downloadsFolder = downloadsFolder
         this.fileHelper = FileHelper
+        this.io = {}
     }
 
     setSocketInstance(io) {
