@@ -1,11 +1,24 @@
-# Google Drive Clone
+<img alt="imagem" src="https://user-images.githubusercontent.com/81262972/134824516-c902364d-efce-4c80-a813-2a851d604a4c.png" />
 
-Bem vindo ao meu projeto! Nele eu trago minha *Primeira* experência com prática em TDD (Desenvolvimento Orientado por Testes) criando o Google Drive e seus sistemas de back-end e front-end com *JavaScript* puro. 
+<h1 align="center">Google Drive Clone</h1>
+
+<p align="center">Neste projeto trago minha *Primeira* experência com prática em TDD (Desenvolvimento Orientado por Testes) criando o Google Drive e seus sistemas de back-end e front-end com *JavaScript* puro.</p>
+
+<h4 align="center"> 
+	🚧Em construção...🚧
+</h4>
+
+<h3>Tabela de Conteúdos</h3>
+<p align="center">
+ <a href="#instalacao">Instalacao</a> •
+ <a href="#como-usar">Como usar</a> • 
+ <a href="#pre-requisitos">Pré Requisitos</a> • 
+ <a href="#tecnologias">Tecnologias</a> • 
+</p>
+
+
 ## Preview
-
-
 ## Checklist Features
-
 - Web API
     - [X] Deve listar arquivos baixados
     - [X] Deve receber stream de arquivos e salvar em disco 
