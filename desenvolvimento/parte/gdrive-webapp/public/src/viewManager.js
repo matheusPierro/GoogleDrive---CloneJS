@@ -10,8 +10,8 @@ export default class ViewManager {
 
         this.formatter = new Intl.DateTimeFormat('pt', {
             locale: 'pt-br',
-            month: 'long',
-            day: 'numeric',
+            month:'long',
+            day:'numeric',
             year: 'numeric',
             hour: '2-digit',
             minute: '2-digit'
@@ -40,20 +40,21 @@ export default class ViewManager {
 
     updateStatus(size) {
         this.output.innerHTML = `Uploading in <b>${Math.floor(size)}%</b>`
-        this.progressBar.Value = size
+        this.progressBar.value = size
     }
 
     configureOnFileChange(fn) {
         this.fileElem.onchange = (e) => fn(e.target.files)
     }
 
+
     configureFileBtnClick() {
         this.newFileBtn.onclick = () => this.fileElem.click()
     }
 
     getIcon(file) {
-        return file.match(/\.mp4/i) ? 'movie' :
-            file.match(/\.jp|png/i) ? 'image' : 'content_copy'
+        return file.match(/\.mp4/i) ? 'movie'
+            : file.match(/\.jp|png/i) ? 'image' : 'content_copy'
     }
 
     makeIcon(file) {
@@ -65,7 +66,7 @@ export default class ViewManager {
         }
 
         return `
-            <i class="material-icons ${colors[icon]} left">${icon}</i>
+        <i class="material-icons ${colors[icon]} left">${icon}</i>
         `
     }
 

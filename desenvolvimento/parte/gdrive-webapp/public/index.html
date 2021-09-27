@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS-Clone Google Drive</title>
+    <title> Google Drive</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="./styles.css">
-
+    
 </head>
-
 <body>
     <div class="navbar-fixed">
         <nav class="nav-extended white">
-            <div class="nav-wrapper white">
-                <ul>
-                    <li><a href="#!" class="title grey-text text-darken-1">JS Google Drive</a></li>
-                </ul>
-                <div class="search-wrapper">
-                    <i class="material-icons">search</i>
-                    <input type="search" name="Search" placeholder="Search Drive" />
-                </div>
-                <ul class="right">
-                    <li><a href="#!"><i class="material-icons grey-text text-darken-1">apps</i></a></li>
-                    <li><a href="#!"><i class="material-icons grey-text text-darken-1">notifications</i></a></li>
-                    <li>
-                        <a href="#!"><img src="http://s2.glbimg.com/z_gIOSUdsxyNGClgVLYVBHBziyw=/0x0:400x400/400x400/s.glbimg.com/po/tt2/f/original/2016/05/20/new-google-favicon-logo.png" class="circle"></a>
-                    </li>
-                </ul>
+          <div class="nav-wrapper white">
+            <ul>
+              <li><a href="#!" class="title grey-text text-darken-1">Google Drive</a></li>
+            </ul>
+            <div class="search-wrapper">
+              <i class="material-icons">search</i>
+              <input type="search" name="Search" placeholder="Search Drive" />
             </div>
-            <div class="nav-wrapper nav-2">
-                <ul>
-                    <li><button class="waves-effect waves-light btn btn-flat white-text" id="newFileBtn">New</button>
-                        <input type="file" id="fileElem" multiple accept="image/video/audio*">
+            <ul class="right">
+              <li><a href="#!"><i class="material-icons grey-text text-darken-1">apps</i></a></li>
+              <li><a href="#!"><i class="material-icons grey-text text-darken-1">notifications</i></a></li>
+              <li><a href="#!"><img src="https://cdn.freelogovectors.net/svg07/google-drive-logo.svg" class="circle"></a></li>
+            </ul>
+          </div>
+          <div class="nav-wrapper nav-2">
+            <ul>
+              <li><button class="waves-effect waves-light btn btn-flat white-text" id="newFileBtn" >New</button>
+                <input type="file" id="fileElem" multiple accept="image/video/audio*">
 
-                    </li>
-                </ul>
-                <ul class="right">
-                    <li><a href="#!"><i class="material-icons grey-text text-darken-1">view_list</i></a></li>
-                    <li><a href="#!"><i class="material-icons grey-text text-darken-1">info</i></a></li>
-                    <li><a href="#!"><i class="material-icons grey-text text-darken-1">settings</i></a></li>
-                </ul>
-            </div>
+              </li>
+            </ul>
+            <ul class="right">
+              <li><a href="#!"><i class="material-icons grey-text text-darken-1">view_list</i></a></li>
+              <li><a href="#!"><i class="material-icons grey-text text-darken-1">info</i></a></li>
+              <li><a href="#!"><i class="material-icons grey-text text-darken-1">settings</i></a></li>
+            </ul>
+          </div>
         </nav>
-    </div>
-    <ul class="side-nav fixed floating transparent z-depth-0">
+      </div>
+      <ul class="side-nav fixed floating transparent z-depth-0">
         <li class="active"><a href="#"><i class="material-icons blue-text text-darken-1">dashboard</i>My Drive</a></li>
         <li><a href="#"><i class="material-icons">devices</i>Computers</a></li>
         <li><a href="#"><i class="material-icons">people</i>Shared with me</a></li>
@@ -55,60 +51,55 @@
         <li><a href="#"><i class="material-icons">camera</i>Google Photos</a></li>
         <li><a href="#"><i class="material-icons">star</i>Starred</a></li>
         <li><a href="#"><i class="material-icons">delete</i>Trash</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
+        <li><div class="divider"></div></li>
         <li><a href="#"><i class="material-icons">cloud</i>Backups</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
+        <li><div class="divider"></div></li>
         <li><a href="#"><i class="material-icons">storage</i>Upgrade storage</a></li>
-    </ul>
+      </ul>
+      
+      <div class="main">
+        <div class="container-fluid" id="dropArea">
 
-    <div class="main">
-        <div class="container-fluid" id="drop-area">
-
-            <table class="highlight bordered">
-                <thead>
-                    <tr>
-                        <th>
-                            Name
-                        </th>
-                        <th>Owner</th>
-                        <th>Last Modified</th>
-                        <th>File Size</th>
-                    </tr>
-                </thead>
-
-                <tbody id="tbody">
-                </tbody>
-            </table>
+          <table class="highlight bordered">
+            <thead>
+              <tr>
+                  <th>
+                    Name
+                  </th>
+                  <th>Owner</th>
+                  <th>Last Modified</th>
+                  <th>File Size</th>
+              </tr>
+            </thead>
+  
+            <tbody id="tbody">
+            </tbody>
+          </table> 
         </div>
-    </div>
-    <footer>
-        <!-- Modal Structure -->
-        <div class="row">
+      </div>
+      <footer> 
+          <!-- Modal Structure -->
+          <div class="row">
             <div id="progressModal" class="modal bottom-sheet col s10 offset-s10">
-                <div class="modal-content">
-                    <div class="row">
-                        <div class="col s2">
-                            <progress id="progressBar" max=100 value=0></progress>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s2">
-                            <h4 id="output" class="center">Uploading... 0%</h4>
-                        </div>
-                    </div>
+              <div class="modal-content">
+                <div class="row">
+                  <div class="col s2">
+                    <progress id="progressBar" max=100 value=0></progress>
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="col s2">
+                    <h4 id="output" class="center">Uploading... 0%</h4>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.min.js" integrity="sha512-fB746S+jyTdN2LSWbYSGP2amFYId226wpOeV4ApumcDpIttPxvk1ZPOgnwqwQziRAtZkiFJVx9F64GLAtoIlCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-        <script src="./app.js" type="module"></script>
-    </footer>
-</body>
-
+          </div>
+            
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.min.js" integrity="sha512-fB746S+jyTdN2LSWbYSGP2amFYId226wpOeV4ApumcDpIttPxvk1ZPOgnwqwQziRAtZkiFJVx9F64GLAtoIlCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          
+          <script src="./app.js" type="module"></script>
+      </footer>
+      </body>
 </html>

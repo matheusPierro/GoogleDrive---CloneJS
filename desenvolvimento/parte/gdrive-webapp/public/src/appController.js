@@ -1,7 +1,8 @@
 export default class AppController {
-    constructor({ connectionManager, viewManager }) {
+    constructor({ connectionManager, viewManager, dragAndDropManager }) {
         this.connectionManager = connectionManager
         this.viewManager = viewManager
+        this.dragAndDropManager = dragAndDropManager
 
         this.uploadingFiles = new Map()
     }
@@ -10,22 +11,29 @@ export default class AppController {
         this.viewManager.configureFileBtnClick()
         this.viewManager.configureModal()
         this.viewManager.configureOnFileChange(this.onFileChange.bind(this))
+        this.dragAndDropManager.initialize({
+            onDropHandler: this.onFileChange.bind(this)
+        })
+
         this.connectionManager.configureEvents({
             onProgress: this.onProgress.bind(this)
         })
 
         this.viewManager.updateStatus(0);
+
         await this.updateCurrentFiles()
     }
 
-    async onProgress({ processedAlredy, filename }) {
-        console.debug({ processedAlredy, filename })
+
+
+    async onProgress({ processedAlready, filename }) {
+        console.debug({ processedAlready, filename })
 
         const file = this.uploadingFiles.get(filename)
-        const alredyProcessed = Math.ceil(processedAlredy / file.size * 100)
-        this.updateProgress(file, alredyProcessed)
+        const alreadyProcessed = Math.ceil(processedAlready / file.size * 100)
+        this.updateProgress(file, alreadyProcessed)
 
-        if (alredyProcessed < 98) return;
+        if (alreadyProcessed < 98) return;
 
         return this.updateCurrentFiles()
     }
@@ -42,6 +50,10 @@ export default class AppController {
     }
 
     async onFileChange(files) {
+        // aqui tem um bug conhecido, se no meio do upload
+        // voce fazer outro upload, ele vai fechar o modal e iniciar do zero
+        this.uploadingFiles.clear()
+
         this.viewManager.openModal()
         this.viewManager.updateStatus(0)
 
@@ -55,7 +67,6 @@ export default class AppController {
         this.viewManager.updateStatus(100)
 
         setTimeout(() => this.viewManager.closeModal(), 1000);
-
         await this.updateCurrentFiles()
     }
 
