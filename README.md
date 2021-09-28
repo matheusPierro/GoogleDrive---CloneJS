@@ -2,7 +2,7 @@
 
 <h1 align="center">Google Drive Clone</h1>
 
-<p align="center">Neste projeto trago minha *Primeira* experência com prática em TDD (Desenvolvimento Orientado por Testes) criando o Google Drive e seus sistemas de back-end e front-end com *JavaScript* puro.</p>
+<p align="center">Neste projeto trago minha primeira experência com prática em TDD (Desenvolvimento Orientado por Testes) criando o Google Drive e seus sistemas de back-end e front-end com <em>JavaScript</em> puro.</p>
 
 <h3> Preview </h3>
 
@@ -16,12 +16,13 @@
 <p align="center">
 <a href="#tecnologias">Tecnologias</a> •
 <a href="#features">Features</a> •
-<a href="#pre-requisitos">Pré Requisitos</a> •
- <a href="#instalacao">Instalacao</a> •
- <a href="#como-usar">Como usar</a>
+<a href="#pré-requisitos">Pré-Requisitos</a> •
+<a href="#instalação">Instalação</a> •
+<a href="#como-usar">Como usar</a> •
+<a href="#autor">Autor</a>
 </p>
 
-### 🛠 Tecnologias
+### Tecnologias
 
 Projeto feito com 100% de cobertura em JAVASCRIPT e as seguintes ferramentas foram usadas na construção do projeto:
 
@@ -34,9 +35,7 @@ Projeto feito com 100% de cobertura em JAVASCRIPT e as seguintes ferramentas for
 - [Pretty-bytes](https://www.npmjs.com/package/pretty-bytes) *Versão 5.6*
 - [Socket.io](https://socket.io/) *Versão 4.1*
 
-
-
-## Checklist Features
+### Features
 - Web API
     - [X] Deve listar arquivos baixados
     - [X] Deve receber stream de arquivos e salvar em disco 
@@ -48,5 +47,22 @@ Projeto feito com 100% de cobertura em JAVASCRIPT e as seguintes ferramentas for
     - [X] Deve listar arquivos baixados
     - [X] Deve permitir fazer upload de arquivos de qualquer tamanho
     - [X] Deve ter função de upload via botão
-    - [] Deve exibir progresso de upload 
-    - [] Deve ter função de upload via drag and drop
+    - [X] Deve exibir progresso de upload 
+    - [X] Deve ter função de upload via drag and drop
+
+### Pré-Requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:<br>
+[Git](https://git-scm.com), <br>
+[Node.js](https://nodejs.org/en/),<br> 
+É bom ter um editor para visualizar o código. Indico o [VSCode](https://code.visualstudio.com/),<br>
+E por último vou precisar que você esteja familiarizado com o terminal (Windows de preferência para facilitar a execução), para iniciar o projeto.
+
+### Instalação
+
+### Como-usar
+
+### Autor
+Em busca de imagem <br>
+Feito por Matheus Pierro <br>
+Entre em contato nas redes sociais👋!
