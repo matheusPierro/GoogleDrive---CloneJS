@@ -53,9 +53,9 @@ Projeto feito com 100% de cobertura em JAVASCRIPT e as seguintes ferramentas for
 ### Pré-Requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:<br>
-[Git](https://git-scm.com), <br>
-[Node.js](https://nodejs.org/en/),<br> 
-É bom ter um editor para visualizar o código. Indico o [VSCode](https://code.visualstudio.com/),<br>
+[Git](https://git-scm.com); <br>
+[Node.js](https://nodejs.org/en/); <br> 
+É bom ter um editor para visualizar o código. Indico o [VSCode](https://code.visualstudio.com/); <br>
 E por último vou precisar que você esteja familiarizado com o terminal (Windows de preferência para facilitar a execução), para iniciar o projeto.
 
 ### Instalação
