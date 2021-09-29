@@ -2,6 +2,8 @@
 
 <h1 align="center">Google Drive Clone</h1>
 
+Licensed under [MIT](./LICENSE).
+
 <p align="center">Neste projeto trago minha primeira experência com prática em TDD (Desenvolvimento Orientado por Testes) criando o Google Drive e seus sistemas de back-end e front-end com <em>JavaScript</em> puro.</p>
 
 <h3> Preview </h3>
