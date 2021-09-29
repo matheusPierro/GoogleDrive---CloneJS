@@ -13,17 +13,16 @@ process.env.USER = process.env.USER ?? "system_user"
 
 const localHostSSL = {
     key: fs.readFileSync('./certificates/key.pem'),
-    cert: fs.readFileSync('./certificates/cert.pem')
+    cert: fs.readFileSync('./certificates/cert.pem'),
 }
 
 const protocol = isProduction ? http : https
 const sslConfig = isProduction ? {} : localHostSSL
 
 
-
 const routes = new Routes()
 const server = protocol.createServer(
-    localHostSSL,
+    sslConfig,
     routes.handler.bind(routes)
 )
 
@@ -35,6 +34,7 @@ const io = new Server(server, {
 })
 
 routes.setSocketInstance(io)
+
 io.on("connection", (socket) => logger.info(`someone connected: ${socket.id}`))
 
 const startServer = () => {

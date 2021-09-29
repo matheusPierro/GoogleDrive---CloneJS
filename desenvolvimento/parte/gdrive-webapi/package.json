@@ -6,6 +6,7 @@
     "type": "module",
     "scripts": {
         "start": "bash -c \"mkdir -p downloads\" && node src/index.js",
+        "prod": "bash -c \"mkdir -p downloads\" && set NODE_ENV=production&& node src/index.js ",
         "test": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --runInBand",
         "test:watch": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --watch --runInBand",
         "test:cov": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --no-cache --runInBand --coverage"
