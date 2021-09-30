@@ -1,5 +1,5 @@
 {
-    "name": "@erickwendel/gdrive-webapp",
+    "name": "@matheusPierro/gdrive-webapp",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -9,7 +9,7 @@
         "dev": "npx http-server public --cert certificates/cert.pem --key certificates/key.pem --ssl -o"
     },
     "keywords": [],
-    "author": "erickwendel",
+    "author": "matheusPierro",
     "license": "ISC",
     "dependencies": {
         "http-server": "^0.12.3"
