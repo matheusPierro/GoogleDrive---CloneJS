@@ -36,6 +36,7 @@ Projeto feito com 100% de cobertura em JAVASCRIPT e as seguintes ferramentas for
 - [Pino-pretty](https://www.npmjs.com/package/pino-pretty) *Versão 5.1*
 - [Pretty-bytes](https://www.npmjs.com/package/pretty-bytes) *Versão 5.6*
 - [Socket.io](https://socket.io/) *Versão 4.1*
+- [Heroku](https://dashboard.heroku.com/)
 
 ### Features
 - Web API
@@ -64,7 +65,18 @@ E por último vou precisar que você esteja familiarizado com o terminal (Window
 
 ### Como-usar
 
+## FAQ
+
+- `NODE_OPTIONS` não é um comando reconhecido pelo sistema, o que fazer?
+    - Se você estiver no Windows, a forma de criar variáveis de ambiente é diferente. Você deve usar a palavra `set` antes do comando.
+    - Ex: `"test": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --runInBand",`
+- Certificado SSL é inválido, o que fazer?
+    - Esse erro acontece porque gerei um certificado atrelado ao usuário da minha máquina.
+    - Você pode clicar em prosseguir no browser e usar o certificado invalido que o projeto vai continuar funcionando, mas se quiser gerar o seu próprio, escrevi o passo a passo em [./certificates](https://github.com/ErickWendel/semana-javascript-expert05/blob/main/certificates)
+- Rodei `npm test` mas nada acontece, o que fazer?
+    - Verifique a versão do seu Node.js. Estamos usando na versão 16.8. Entre no [site do node.js](https://nodejs.org/) e baixe a versão mais recente.
+
 ### Autor
-Em busca de imagem <br>
-Feito por Matheus Pierro <br>
+//Em busca de imagem... <br>
+Feito por Matheus Pierro em parceiria e suporte de Erick Wendel<br>
 Entre em contato nas redes sociais👋!
